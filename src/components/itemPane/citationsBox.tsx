@@ -6,6 +6,7 @@ import Citation from "../../cita/citation";
 import SourceItemWrapper from "../../cita/sourceItemWrapper";
 import { config } from "../../../package.json";
 import CitationRow from "./citationRow";
+import ZoteroOverlay from "../../cita/zoteroOverlay";
 
 interface CitationsBoxProps {
 	editable: boolean;
@@ -62,33 +63,9 @@ function CitationsBox(props: CitationsBoxProps) {
 		[props.sortBy, citations],
 	);
 
-	/**
-	 * Opens the citation editor window.
-	 * @param {Citation} citation - Citation to be edited.
-	 * @returns {Zotero.Item} - Edited cited item.
-	 */
-	function openEditor(citation: Citation): Zotero.Item | undefined {
-		const args = {
-			citation: citation,
-			addon: addon,
-			ZoteroPane: ZoteroPane,
-			goUpdateGlobalEditMenuItems:
-				window.document.defaultView!.goUpdateGlobalEditMenuItems,
-		};
-		const retVals: { [key: string]: any } = {};
-		window.openDialog(
-			`chrome://${config.addonRef}/content/citationEditor.xhtml`,
-			"",
-			"chrome,dialog=no,modal,centerscreen,resizable,width=380,height=500",
-			args,
-			retVals,
-		);
-		return retVals.item;
-	}
-
 	function handleCitationEdit(index: number) {
 		const citation = citations[index];
-		const item = openEditor(citation);
+		const item = ZoteroOverlay.openEditor(citation);
 
 		// Reset focus
 		(document.activeElement as HTMLElement | XULElement).blur();

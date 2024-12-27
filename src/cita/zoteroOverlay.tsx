@@ -745,7 +745,7 @@ class ZoteroOverlay {
 	 * @param {Citation} citation - Citation to be edited.
 	 * @returns {Zotero.Item} - Edited cited item.
 	 */
-	openEditor(citation: Citation): Zotero.Item | undefined {
+	static openEditor(citation: Citation): Zotero.Item | undefined {
 		const args = {
 			citation: citation,
 			addon: addon,
@@ -764,7 +764,7 @@ class ZoteroOverlay {
 		return retVals.item;
 	}
 
-	handleCitationAdd() {
+	handleCitationManualAdd() {
 		if (!this._sourceItem) return;
 
 		const citation = new Citation(
@@ -776,7 +776,7 @@ class ZoteroOverlay {
 			},
 			this._sourceItem,
 		);
-		const item = this.openEditor(citation);
+		const item = ZoteroOverlay.openEditor(citation);
 		if (!item) {
 			debug("Edit cancelled by user.");
 			return;
@@ -836,7 +836,7 @@ class ZoteroOverlay {
 					label: Wikicite.getString(
 						"wikicite.item-menu.add-manually",
 					),
-					commandListener: () => this.handleCitationAdd(),
+					commandListener: () => this.handleCitationManualAdd(),
 				},
 			],
 		);
