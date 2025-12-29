@@ -79,29 +79,9 @@ const CitationEditor = (props: CitationEditorProps) => {
 	}
 
 	useEffect(() => {
-		// const addCreatorRow = props.itemBox.addCreatorRow.bind(props.itemBox);
-		// props.itemBox.addCreatorRow = function(creatorData, creatorTypeIDOrName, unsaved, defaultRow) {
-		//     addCreatorRow(creatorData, creatorTypeIDOrName, false, defaultRow)
-		// };
-
-		// props.itemBox.disableCreatorAddButtons = () => {};
-
-		// props.itemBox.blurOpenField = () => {};
-
-		// if item's saveTx overwritten with itembox.refresh,
-		// sometimes itembox gets stucked in a loop
-		// overwrite _focusNextField as a workaround
 		try {
 			props.itemBox._focusNextField = () => {};
 
-			// const disableButton = props.itemBox.disableButton.bind(props.itemBox);
-			// props.itemBox.disableButton = function(button) {
-			//     if (
-			//         button.value === '+' &&
-			//         this._dynamicFields.getElementsByAttribute('value', '+').length === 1
-			//     ) return;
-			//     disableButton(button);
-			// }
 			props.itemBox.mode = "edit";
 
 			// itembox sometimes fails to update if saveOnEdit is set to false
@@ -110,11 +90,6 @@ const CitationEditor = (props: CitationEditorProps) => {
 			setHiddenFields(props.item.item.itemTypeID);
 			props.itemBox.item = props.item.item;
 
-			// props.itemBox.item.saveTx = function() {
-			//     if (!props.itemBox.item._refreshed) {
-			//         props.itemBox.refresh();
-			//     }
-			// }
 			props.itemBox.addHandler("itemtypechange", onItemTypeChange);
 
 			// todo: this is a weird hack to get the item box to appear

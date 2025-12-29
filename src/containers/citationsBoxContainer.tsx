@@ -118,17 +118,7 @@ function CitationsBoxContainer(props: {
 						// 		"qid",
 						// 	),
 						// );
-						// fix: not sure why this was if (false)?
 					}
-					// } else if (false) {
-					// 	// I have to check if the target item of one of the linked citations has been modified
-					// 	setSourceItem(
-					// 		new SourceItemWrapper(
-					// 			props.item,
-					// 			prefs.getStorage(),
-					// 		),
-					// 	);
-					// }
 				}
 			},
 		};
@@ -168,9 +158,10 @@ function CitationsBoxContainer(props: {
 
 	// Sync state with Zotero overlay
 	useEffect(() => {
+		// need the prettier-ignore otherwise the () gets split across lines and ts-expect-error doesn't work
 		// prettier-ignore
 		// @ts-expect-error - Plugin instance is not typed
-		( Zotero[config.addonInstance].data.zoteroOverlay as ZoteroOverlay).setSourceItem(sourceItem);
+		(Zotero[config.addonInstance].data.zoteroOverlay as ZoteroOverlay).setSourceItem(sourceItem);
 	}, [sourceItem]);
 
 	// Keep citation count up to date

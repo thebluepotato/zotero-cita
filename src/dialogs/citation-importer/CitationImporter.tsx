@@ -12,8 +12,6 @@ const CitationImporter = (props: CitationImporterProps) => {
 	const [text, setText] = useState("");
 
 	return (
-		// TS doesn't like orient in div
-		// <div orient="vertical">
 		<div>
 			<div id="citation-importer-description">
 				<label>

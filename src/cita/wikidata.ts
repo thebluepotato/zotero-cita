@@ -924,15 +924,6 @@ export default class {
 			} while (login.error);
 		}
 		return results;
-
-		// I deem the following uneccesary, because I would expect this method to
-		// be called from a sync with Wikidata operation. Hence, this check should
-		// have been done there. Maybe do ask for a lastrevid for each sourceQID
-		// and fail if they do not match.
-		// Or do get citations for checking if no lastrevid provided
-		// for each sourceQID, get current citations from wikidata
-		// for each targetQID, ignore those in wikidata already
-		// add remaining citations
 	}
 }
 

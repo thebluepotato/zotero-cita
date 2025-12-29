@@ -528,16 +528,6 @@ class SourceItemWrapper extends ItemWrapper {
 		return !conflict;
 	}
 
-	// updateCitationLabels() {
-	//     const items = this.citations.map((citation) => citation.item);
-	//     // Wikicite.getItemLabels expects items to have a libraryID!
-	//     const labels = Wikicite.getItemLabels(items);
-	//     this.citations.forEach((citation, index) => {
-	//         citation.shortLabel = labels.short[index];
-	//         citation.longLabel = labels.long[index];
-	//     });
-	// }
-
 	sync() {
 		// I think it is too trivial to have one Class method
 		// be careful this method will not update this instance of CitationList
@@ -566,13 +556,6 @@ class SourceItemWrapper extends ItemWrapper {
 		} else {
 			Citations.syncItemCitationsWithWikidata([this]);
 		}
-		// fail if no QID for itemID
-		// call the Wikidata api
-		// call this.add multiple times
-		// do something similar than crossref to check if citation retrieved already exists
-
-		// offer to automatically link to zotero items: this should be handled by the
-		// this.addCitation method
 	}
 
 	// Fetch the QIDs of an item's citations
@@ -618,9 +601,11 @@ class SourceItemWrapper extends ItemWrapper {
 		// offer to automatically link to zotero items
 	}
 
-	// import citations from text or file
-	// supports all formats supported by Zotero's import translator (BibTeX, RIS, RDF, ...)
-	// also supports multiple items
+	/**
+	 * import citations from text or file
+	 * supports all formats supported by Zotero's import translator (BibTeX, RIS, RDF, ...)
+	 * also supports multiple items
+	 */
 	async importCitations() {
 		// open a new window where the user can paste in bibliographic text, or select a file
 		const args = {
@@ -791,8 +776,10 @@ class SourceItemWrapper extends ItemWrapper {
 		return citations;
 	}
 
-	// import citation by identifier (DOI/ISBN/ArXiV/PMID...)
-	// - also supports multiple items (but only one type at once)
+	/**
+	 * import citation by identifier (DOI/ISBN/ArXiV/PMID...)
+	 * also supports multiple items (but only one type at once)
+	 */
 	async addCitationsByIdentifier() {
 		// open a new window where the user can paste in identifier strings
 		const args = {

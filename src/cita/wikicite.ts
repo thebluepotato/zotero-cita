@@ -2,54 +2,6 @@ import Wikidata from "./wikidata";
 
 import { getString as _getString } from "../utils/locale";
 
-// declare const Components: any;
-// declare const Services: any;
-// declare const Zotero: any;
-// declare global {
-//     interface Window { openDialog: (url: string, name: string, features: string, args:Object, retVals?: Object) => any; }
-// }
-
-// Components.utils.import("resource://gre/modules/Services.jsm");
-
-// Provides an alternative CSL Engine to obtain labels for the citation items
-// However, it is very slow so an alternative approach will be used instead
-// class CiteProc {
-// 	sys: {
-// 		items: any[];
-// 		retrieveItem: (index: any) => any;
-// 		retrieveLocale: (lang: any) => any;
-// 	};
-// 	cslEngine: any;
-// 	constructor() {
-// 		// Based on Zotero.Style.prototype.getCiteProc()
-// 		this.sys = {
-// 			items: [],
-// 			retrieveItem: function (index) {
-// 				const zoteroItem = this.items[index];
-// 				if (!zoteroItem) {
-// 					throw new Error();
-// 				}
-// 				if (!zoteroItem.libaryID) {
-// 					// Fixme: this is just a workaround
-// 					zoteroItem.libraryID = 1;
-// 				}
-// 				const cslItem = Zotero.Utilities.itemToCSLJSON(zoteroItem);
-// 				cslItem.id = index;
-// 				return cslItem;
-// 			},
-// 			retrieveLocale: function (lang) {
-// 				return Zotero.Cite.Locale.get(lang);
-// 			},
-// 		};
-// 		this.cslEngine = new Zotero.CiteProc.CSL.Engine(
-// 			this.sys,
-// 			Zotero.File.getContentsFromURL("chrome://cita/content/apa.csl"),
-// 			Zotero.locale,
-// 			false,
-// 		);
-// 	}
-// }
-
 /**
  * Wikicite namespace.
  */
@@ -85,13 +37,10 @@ export default {
 		return `Cita/v${this.version || "?"} (https://github.com/diegodlh/zotero-cita)`;
 	},
 
-	// citeproc: new CiteProc('http://www.zotero.org/styles/apa'),
-
 	/********************************************/
 	// General use utility functions
 	/********************************************/
 
-	// Fixme: check how to write correct JSDoc
 	/**
 	 * Return values for extra field fields.
 	 * @param {Zotero.Item} item - A Zotero item.
@@ -206,15 +155,6 @@ export default {
 		if (nameParts[0] !== "wikicite") nameParts.unshift("wikicite");
 		name = nameParts.join("_");
 		return _getString(name);
-		// try {
-		// 	return this._bundle.GetStringFromName(name);
-		// } catch {
-		// 	try {
-		// 		return this._fallbackBundle.GetStringFromName(name);
-		// 	} catch {
-		// 		throw Error("Failed getting string from name " + name);
-		// 	}
-		// }
 	},
 
 	/**
@@ -242,23 +182,6 @@ export default {
 			]),
 		);
 		return _getString(name, { args });
-		// try {
-		// 	return this._bundle.formatStringFromName(
-		// 		name,
-		// 		params,
-		// 		params.length,
-		// 	);
-		// } catch {
-		// 	try {
-		// 		return this._fallbackBundle.formatStringFromName(
-		// 			name,
-		// 			params,
-		// 			params.length,
-		// 		);
-		// 	} catch {
-		// 		throw Error("Failed formatting string from name " + name);
-		// 	}
-		// }
 	},
 
 	selectItem: function () {
@@ -278,29 +201,6 @@ export default {
 
 		return item;
 	},
-
-	// // Return citation and bibliography labels for list of items provided
-	// getItemLabels: function(items) {
-	//     // This method is nice, but slow
-	//     this.citeproc.sys.items = items;
-	//     const indices = [...Array(items.length).keys()]
-	//     // defined citable items
-	//     const t0 = performance.now();
-	//     this.citeproc.cslEngine.updateItems(indices);
-	//     const t1 = performance.now();
-	//     console.log(`Updating items in the CSL engine took  ${t1-t0}ms.`)
-	//     const citation = {
-	//         citationItems: indices.map((index) => ({id: index})),
-	//         properties: {}
-	//     };
-	//     // find better citeproc function!
-	//     const t2 = performance.now();
-	//     const shortLabels = this.citeproc.cslEngine.previewCitationCluster(citation, [], [], 'text').split(';');
-	//     const t3 = performance.now();
-	//     console.log(`Getting short labels from the CSL engine took  ${t3-t2}ms.`)
-	//     const longLabels = items.map(() => 'Long label will be shown here');
-	//     return { short: shortLabels, long: longLabels };
-	// }
 };
 
 export function debug(msg: string, err?: Error) {
@@ -311,5 +211,4 @@ export function debug(msg: string, err?: Error) {
 	} else {
 		Zotero.debug(`{Cita} ${new Date()}: ${msg}`);
 	}
-	// console.log(msg);
 }

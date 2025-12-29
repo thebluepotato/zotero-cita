@@ -143,7 +143,7 @@ class Citation {
 		});
 	}
 
-	/*
+	/**
 	 * Delete citation from Wikidata
 	 */
 	async deleteRemotely() {
@@ -224,14 +224,7 @@ class Citation {
 	 * Return a JSON object to save to the source item extra field.
 	 */
 	toJSON() {
-		// const item = this.target.item.toJSON();
-		// delete item.version;
-		// delete item.tags;
-		// delete item.collections;
-		// delete item.relations;
-
 		return {
-			// item: item,
 			item: this.target.toJSON(),
 			ocis: this.ocis.map((oci) => oci.oci),
 			zotero: this.target.key,

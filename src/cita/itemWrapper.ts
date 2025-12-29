@@ -15,9 +15,7 @@ export default class ItemWrapper {
 	key?: string;
 	saveHandler: any;
 	item: Zotero.Item;
-	// item(item: any): any {
-	//     throw new Error('Method not implemented.');
-	// }
+
 	constructor(item?: Zotero.Item, saveHandler?: () => void) {
 		if (item === undefined) item = new Zotero.Item();
 		if (saveHandler === undefined) saveHandler = item.saveTx;
@@ -55,15 +53,6 @@ export default class ItemWrapper {
 			this.saveHandler();
 		}
 	}
-
-	// this.publicationDate = publicationDate;
-	// this.publisher = publisher;
-	// this.volume = volume;
-	// this.issue;
-	// this.pages = pages;
-	// this.doi = doi
-	// this.isbn; // for books
-	// this.place; // for books?
 
 	// UUIDs
 	get doi(): DOI | undefined {
@@ -372,34 +361,10 @@ export default class ItemWrapper {
 	}
 
 	fromJSON(json: object) {
-		// Adapted from Zotero.Item.fromJSON for faster performance
-		// const itemTypeID = Zotero.ItemTypes.getID(json.itemType);
-		// if (itemTypeID) {
-		// 	this.item.setType(itemTypeID);
-		// }
-		// for (const [key, value] of Object.entries(json)) {
-		// 	if (key === "creators") {
-		// 		this.item.setCreators(value);
-		// 	} else if (key !== "itemType") {
-		// 		this.item.setField(key, value);
-		// 	}
-		// }
 		this.item.fromJSON(json);
 	}
 
 	toJSON() {
-		// Adapted from Zotero.Item.toJSON for faster performance
-		// const json: { [key: string]: any } = {
-		// 	itemType: Zotero.ItemTypes.getName(this.item.itemTypeID),
-		// 	creators: this.item.getCreatorsJSON(),
-		// };
-		// for (const i in this.item._itemData) {
-		// 	const val = String(this.item.getField(i));
-		// 	if (val !== "") {
-		// 		json[Zotero.ItemFields.getName(i) as string] = val;
-		// 	}
-		// }
-		// return json;
 		return this.item.toJSON();
 	}
 }

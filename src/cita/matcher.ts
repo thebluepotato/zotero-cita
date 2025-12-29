@@ -323,33 +323,6 @@ export default class Matcher {
 			creatorsCache[row.itemID].push(parseCreator(row));
 		}
 
-		// Alternative slightly faster method that pushes creators to a temporary
-		// creators array until the item ID changes. Needs rows be sorted by item ID.
-		// let lastItemID;
-		// let creators = [];
-		// for (const row of rows) {
-		//     if (lastItemID && row.itemID !== lastItemID) {
-		//         // item ID changed; accumulated creators should be assigned to
-		//         // last item ID
-		//         if (creators.length) {
-		//             creatorsCache[lastItemID] = creators;
-		//             // restart the creators array for the current item
-		//             creators = [];
-		//         }
-		//     }
-
-		//     lastItemID = row.itemID;
-
-		//     creators.push({
-		//         lastName: normalizeString(row.lastName),
-		//         firstInitial: row.fieldMode === 0 ? normalizeString(row.firstName).charAt(0) : false
-		//     });
-		// }
-		// // Add final item creators
-		// if (creators.length) {
-		//     creatorsCache[lastItemID] = creators;
-		// }
-
 		this._creatorsCache = creatorsCache;
 	}
 }

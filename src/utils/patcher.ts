@@ -1,4 +1,4 @@
-const patchMarker = "ZoteroReadingListPatch";
+const patchMarker = "ZoteroCitaPatch";
 
 export function patch(
 	methodObject: any,
