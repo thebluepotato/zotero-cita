@@ -17,7 +17,7 @@ import { version as wbEditVersion } from "../../node_modules/wikibase-edit/packa
 // specified in the plugin preferences, to support other
 // Wikibase instances.
 const WBK_INSTANCE = "https://www.wikidata.org";
-const WBK_SPARQL = "https://query.wikidata.org/sparql";
+const WBK_SPARQL = "https://query-scholarly.wikidata.org/sparql";
 const RECONCILE_API = "https://wikidata.reconci.link/$lng/api";
 
 const entities = {
