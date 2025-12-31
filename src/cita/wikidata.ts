@@ -385,7 +385,7 @@ export default class {
 		// select items unavailable in Wikidata for entity creation
 		const unavailable = [];
 		for (const [item, qid] of qids) {
-			if (qid === null) {
+			if (typeof qid === "undefined") {
 				if (!item.title) {
 					// skip items without a title
 					continue;
