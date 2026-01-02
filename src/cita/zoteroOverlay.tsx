@@ -633,7 +633,9 @@ class ZoteroOverlay {
 						key={"citationsBox-" + item.id}
 						item={item}
 						onCountChange={(newCount: number) => {
-							setL10nArgs(`{"citationCount": "${newCount}"}`);
+							// s1 is the name of the first string variable in the message
+							// because we can only call variables s to maintain translatewiki compatibility
+							setL10nArgs(`{"s1": "${newCount}"}`);
 						}}
 						editable={
 							ZoteroPane.collectionsView
@@ -659,7 +661,9 @@ class ZoteroOverlay {
 					});
 				}
 
-				setL10nArgs(`{"citationCount": "${citationCount}"}`);
+				// s1 is the name of the first string variable in the message
+				// because we can only call variables s to maintain translatewiki compatibility
+				setL10nArgs(`{"s1": "${citationCount}"}`);
 			},
 			// onItemChange is called every time the item changes (new selection in the library tab or switching reader tabs)
 			onItemChange: ({ item, setEnabled }) => {
