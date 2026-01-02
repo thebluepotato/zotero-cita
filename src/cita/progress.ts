@@ -15,6 +15,9 @@ const css = `
 .icon-css.icon-done {
 	background:url("chrome://zotero/skin/20/universal/success.svg") no-repeat center/contain;
 }
+.icon-css.icon-error {
+	background:url("chrome://zotero/skin/20/universal/error.svg") no-repeat center/contain;
+}
 .icon-css {
 	// needed for the fill to take effect on the SVG
 	-moz-context-properties: fill, fill-opacity, stroke, stroke-opacity;
@@ -128,10 +131,6 @@ export default class Progress {
 		if (status) {
 			// @ts-ignore new version of Progress
 			progress.setItemTypeAndIcon(null, status);
-			if (status === "error") {
-				// need to call setItemTypeAndIcon before setError or error icon won't show
-				progress.setError();
-			}
 		}
 		this.progress.push(progress);
 	}
@@ -141,10 +140,6 @@ export default class Progress {
 		if (status) {
 			// @ts-ignore new version of Progress
 			progress.setItemTypeAndIcon(null, status);
-			if (status === "error") {
-				// need to call setItemTypeAndIcon before setError or error icon won't show
-				progress.setError();
-			}
 		}
 		if (message) {
 			progress.setText(message);
