@@ -1,5 +1,5 @@
 import Wikicite, { debug } from "./wikicite";
-import Citation from "./citation";
+import { Citation } from "./citation";
 import Citations from "./citations";
 import Extraction from "./extract";
 import ItemWrapper from "./itemWrapper";
@@ -216,6 +216,7 @@ class SourceItemWrapper extends ItemWrapper {
 					const citation = new Citation(
 						JSON.parse(rawCitation),
 						this,
+						"load",
 					);
 					if (citation) {
 						citations.push(citation);
@@ -257,7 +258,7 @@ class SourceItemWrapper extends ItemWrapper {
 					citations.push(
 						...rawCitations.map(
 							(rawCitation: any) =>
-								new Citation(rawCitation, this),
+								new Citation(rawCitation, this, "load"),
 						),
 					);
 				} catch (error) {
@@ -655,8 +656,13 @@ class SourceItemWrapper extends ItemWrapper {
 						newItem.fromJSON(jsonItem);
 
 						const citation = new Citation(
-							{ item: newItem, ocis: [] },
+							{
+								item: newItem,
+								ocis: [],
+								citationSource: "User",
+							},
 							this,
+							"create",
 						);
 						citations.push(citation);
 					}
@@ -769,7 +775,11 @@ class SourceItemWrapper extends ItemWrapper {
 
 		const citations = items
 			? items.map((item) => {
-					return new Citation({ item: item, ocis: [] }, this);
+					return new Citation(
+						{ item: item, ocis: [] },
+						this,
+						"create",
+					);
 				})
 			: [];
 

@@ -17,7 +17,7 @@ import { Root, createRoot } from "react-dom/client";
 import { getLocaleID } from "../utils/locale";
 import { getPrefGlobalName } from "../utils/prefs";
 import { MenuitemOptions } from "zotero-plugin-toolkit";
-import Citation from "./citation";
+import { Citation } from "./citation";
 import { IndexerBase } from "./indexer";
 import PIDBoxContainer from "../containers/pidBoxContainer";
 import OCI from "../oci";
@@ -415,8 +415,13 @@ class ZoteroOverlay {
 		for (const source of sources) {
 			const citations = targets.map((target) => {
 				const citation = new Citation(
-					{ item: target.item, ocis: [] },
+					{
+						item: target.item,
+						ocis: [],
+						citationSource: "User",
+					},
 					source,
+					"create",
 				);
 				citation.linkToZoteroItem(target.item);
 				return citation;
@@ -773,14 +778,17 @@ class ZoteroOverlay {
 					itemType: "journalArticle", // Fixme: maybe replace with a const
 				},
 				ocis: [],
+				citationSource: "User",
 			},
 			this._sourceItem,
+			"create",
 		);
 		const item = this.openEditor(citation);
 		if (!item) {
 			debug("Edit cancelled by user.");
 			return;
 		}
+
 		if (
 			this._sourceItem.getPID("QID") &&
 			Wikicite.getExtraField(item, "QID").values.length
@@ -790,6 +798,7 @@ class ZoteroOverlay {
 			);
 		}
 		citation.target.item = item;
+		citation.lastModificationDate = new Date();
 
 		// This will save changes to the item's extra field
 		// The modified item observer above will be triggered.

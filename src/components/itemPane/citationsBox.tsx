@@ -2,7 +2,7 @@
 import * as React from "react";
 import { useEffect, useState, useRef } from "react";
 import Wikicite, { debug } from "../../cita/wikicite";
-import Citation from "../../cita/citation";
+import { Citation } from "../../cita/citation";
 import SourceItemWrapper from "../../cita/sourceItemWrapper";
 import { config } from "../../../package.json";
 import CitationRow from "./citationRow";
@@ -126,6 +126,7 @@ function CitationsBox(props: CitationsBoxProps) {
 			return;
 		}
 		citation.target.item = item;
+		citation.lastModificationDate = new Date();
 
 		const newCitations = props.sourceItem.citations;
 		newCitations[index] = citation;
