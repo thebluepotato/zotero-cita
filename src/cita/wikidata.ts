@@ -52,9 +52,9 @@ const wdk = WBK({
 
 const wdEdit = wbEdit({
 	instance: WBK_INSTANCE,
-	// maxlag may be ommited for interactive tasks where a user is waiting for the result
+	// can set a high value for interactive tasks where a user is waiting for the result
 	// https://www.mediawiki.org/wiki/Manual:Maxlag_parameter
-	maxlag: undefined,
+	maxlag: 20,
 	// tags: ['Zotero_WikiCite']
 });
 
