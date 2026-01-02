@@ -15,6 +15,12 @@ const css = `
 .icon-css.icon-done {
 	background:url("chrome://zotero/skin/20/universal/success.svg") no-repeat center/contain;
 }
+.icon-css {
+	// needed for the fill to take effect on the SVG
+	-moz-context-properties: fill, fill-opacity, stroke, stroke-opacity;
+	// set to the current colour to match Zotero's colour scheme
+	fill: currentColor;
+}
 `;
 
 type StatusType = "error" | "done" | "loading";
