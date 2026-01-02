@@ -19,9 +19,9 @@ const css = `
 	background:url("chrome://zotero/skin/20/universal/error.svg") no-repeat center/contain;
 }
 .icon-css {
-	// needed for the fill to take effect on the SVG
+	/* needed for the fill to take effect on the SVG */
 	-moz-context-properties: fill, fill-opacity, stroke, stroke-opacity;
-	// set to the current colour to match Zotero's colour scheme
+	/* set to the current colour to match Zotero's colour scheme */
 	fill: currentColor;
 }
 `;
