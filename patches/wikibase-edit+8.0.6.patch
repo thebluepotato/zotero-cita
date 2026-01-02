@@ -1,5 +1,5 @@
 diff --git a/node_modules/wikibase-edit/dist/src/lib/request/fetch.js b/node_modules/wikibase-edit/dist/src/lib/request/fetch.js
-index 1a8951a..cbdc8d7
+index 1a8951a..cd8fbbd
 --- a/node_modules/wikibase-edit/dist/src/lib/request/fetch.js
 +++ b/node_modules/wikibase-edit/dist/src/lib/request/fetch.js
 @@ -2,16 +2,17 @@ import fetch from 'cross-fetch';
@@ -30,15 +30,18 @@ index 1a8951a..cbdc8d7
  export async function customFetch(url, { timeout, ...options } = {}) {
      options.agent = options.agent || agent;
      options.headers['accept-encoding'] = 'gzip,deflate';
-@@ -38,7 +39,7 @@ export async function customFetch(url, { timeout, ...options } = {}) {
+@@ -38,9 +39,9 @@ export async function customFetch(url, { timeout, ...options } = {}) {
  }
  // Based on https://stackoverflow.com/questions/46946380/fetch-api-request-timeout#57888548
  function fetchWithTimeout(url, options, timeoutMs = 120_000) {
 -    const controller = new AbortController();
 +    const controller = new window.AbortController();
      const promise = fetch(url, {
-         keepalive: true,
+-        keepalive: true,
++        keepalive: false,
          signal: controller.signal,
+         credentials: 'include',
+         mode: 'cors',
 diff --git a/node_modules/wikibase-edit/dist/src/lib/request/login.js b/node_modules/wikibase-edit/dist/src/lib/request/login.js
 index ef02dca..c7fc19d
 --- a/node_modules/wikibase-edit/dist/src/lib/request/login.js
