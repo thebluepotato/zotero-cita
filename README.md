@@ -2,53 +2,51 @@
 
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 
-A [Zotero](http://www.zotero.org/) plugin adding citation metadata support, with back and forth communication to
-[WikiData](https://www.wikidata.org/), citation extraction from file attachments, and local citation network visualization.
+A [Zotero](http://www.zotero.org/) plugin adding support for sorting citation data for your Zotero items, featuring:
+
+- citation syncing (back and forth) with [WikiData](https://www.wikidata.org/)
+- getting citation list data from sources including CrossRef, Semantic Scholar, and OpenAlex
+- local citation network visualization
 
 Initial development of this plugin was supported by a [grant](https://meta.wikimedia.org/wiki/Wikicite/grant/WikiCite_addon_for_Zotero_with_citation_graph_support)
 from the Wikimedia Foundation.
 
-<img width="1719" height="1090" alt="image" src="https://github.com/user-attachments/assets/de98c563-daf1-48f3-9529-49bd8adc2f59" />
-
+![example screenshot](https://github.com/user-attachments/assets/de98c563-daf1-48f3-9529-49bd8adc2f59)
 
 ## Description
 
-The plugin consists of four separate basic modules:
+The plugin consists of three separate basic modules:
 
 ### Citation metadata support
 
 This module adds citation metadata support to Zotero.
 It provides an additional Citations tab where the user can:
 
-- add, edit or remove individual citations;
-- run item-wide and citation specific actions, such as syncing citations with WikiData, parsing citations from attachments (not yet supported), etc;
-- edit source item's UUIDs, such as DOI, WikiData's QID, and [OpenCitations Corpus](https://opencitations.net/corpus) ID.
+- add, edit or remove individual citations
+- run item-wide and citation specific actions, such as syncing citations with WikiData or getting citation lists from sources including CrossRef, Semantic Scholar, and OpenAlex
+- search for and store source item's identifiers, including DOI, WikiData's QID, PMID, Semantic Scholar CorpusId, and OpenAlex Key
 
 Citations metadata are currently saved as a note attachment.
 
 ### WikiData communication
 
 This module provides back and forth citation syncing with WikiData, using property
-[P2860](https://www.wikidata.org/wiki/Property:P2860) "cites work".
+[P2860](https://www.wikidata.org/wiki/Property:P2860) "cites work". This can be used to manually edit and improve WikiData's citation data.
 
 ### Local Citation Network visualization
 
 This module allows visualizing how items in a local library connect to each other through citations,
 using Tim Wölfle's [Local Citation Network](https://timwoelfle.github.io/Local-Citation-Network/).
 
-### Citation extraction (to be developed)
-
-This module will send file attachments to local or remote citation extraction services
-(e.g., [Grobid](https://github.com/kermitt2/grobid), [Scholarcy](http://ref.scholarcy.com/api/)) and
-retrieve parsed citations from them.
-
 ## Installation
 
 Download the [latest XPI](https://github.com/diegodlh/zotero-cita/releases/latest) and [install](https://www.zotero.org/support/plugins) it in Zotero.
 
+> **Note:** Cita v1.0.0 and later versions require Zotero 7 or later. The last version supporting Zotero 6 was [v0.5.5](https://github.com/diegodlh/zotero-cita/releases/tag/v0.5.5)
+
 ## Quickstart guide
 
-Quickstart guide available at [Wikidata's Cita page](https://www.wikidata.org/wiki/Wikidata:Zotero/Cita).
+A quickstart guide for an older version of Cita is available at [Wikidata's Cita page](https://www.wikidata.org/wiki/Wikidata:Zotero/Cita). The interface will be slightly different but the same steps apply for newer Cita versions.
 
 ## Translation
 
@@ -57,7 +55,7 @@ Cita is collaboratively translated at translatewiki.net. Would you like to help 
 ## Development
 
 1. Download a beta version of Zotero from [here](https://www.zotero.org/support/beta_builds) - these come with the debug tools already enabled so you don't need to build it from source.
-2. Install nodejs and npm if you don't already have them (Currently Node v18 and npm v8.1 are the minimum required versions)
+2. Install nodejs and npm if you don't already have them (Currently Node v22 and npm v10 are the minimum required versions)
 3. Clone the source code `git clone https://github.com/diegodlh/zotero-cita`, and run `git submodule update --init --recursive` to fetch the nested submodules.
 4. Setup the plugin to run with the debug version of Zotero
     1. Make a new file in the repo root called `.env` (you can also copy an example `.env` file from [here](https://github.com/northword/zotero-plugin-scaffold?tab=readme-ov-file#03-create-a-env-file))
@@ -81,8 +79,6 @@ Cita depends on:
 - maxlath's [wikibase-edit](https://github.com/maxlath/wikibase-edit) & [wikibase-sdk](https://github.com/maxlath/wikibase-sdk)
 - Tim Wölfle's [Local Citation Network](https://timwoelfle.github.io/Local-Citation-Network/)
 - [React](https://reactjs.org/)
-
-Support for importing/exporting citations from/to a file, among other contributions, were mostly implemented by Dominic Dall'Osto.
 
 ## License
 
