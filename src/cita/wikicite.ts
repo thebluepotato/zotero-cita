@@ -2,6 +2,8 @@ import Wikidata from "./wikidata";
 
 import { getString as _getString } from "../utils/locale";
 
+import { version as citaVersion } from "../../package.json";
+
 /**
  * Wikicite namespace.
  */
@@ -10,7 +12,7 @@ export default {
 	// // Basic information
 	// /********************************************/
 	id: "zotero-wikicite@wikidata.org",
-	version: undefined,
+	version: citaVersion,
 	// zoteroID: 'zotero@chnm.gmu.edu',
 	// zoteroTabURL: 'chrome://zotero/content/tab.xul',
 
