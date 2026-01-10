@@ -1,5 +1,5 @@
 [submodule "Local-Citation-Network"]
 	path = Local-Citation-Network
-	url = https://github.com/zotero-cita/LocalCitationNetwork.git
+	url = https://github.com/zotero-cita/Local-Citation-Network.git
 	branch = cita
 	
