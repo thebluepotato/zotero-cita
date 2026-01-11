@@ -1,8 +1,8 @@
 import { IndexerBase, IndexedWork, ParsableReference } from "./indexer";
-import ItemWrapper from "./itemWrapper";
-import Wikicite, { debug } from "./wikicite";
-import PID from "./PID";
-import { ParsedReference } from "./zotLookup";
+import ItemWrapper from "../itemWrapper";
+import Wikicite, { debug } from "../wikicite";
+import PID from "../PID";
+import { ParsedReference } from "../zotLookup";
 import Bottleneck from "bottleneck";
 
 interface CrossrefFilterResponse {

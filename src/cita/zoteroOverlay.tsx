@@ -1,12 +1,12 @@
 import Wikicite, { debug } from "./wikicite";
 import Citations from "./citations";
 import CitationsBoxContainer from "../containers/citationsBoxContainer";
-import Crossref from "./crossref";
-import Semantic from "./semantic";
-import OpenAlex from "./openalex";
+import Crossref from "./indexers/crossref";
+import Semantic from "./indexers/semantic";
+import OpenAlex from "./indexers/openalex";
 import Extraction from "./extract";
 import LCN from "./localCitationNetwork";
-import OpenCitations from "./opencitations";
+import OpenCitations from "./indexers/opencitations";
 import * as React from "react";
 import SourceItemWrapper from "./sourceItemWrapper";
 import WikiciteChrome from "./wikiciteChrome";
@@ -18,7 +18,7 @@ import { getLocaleID } from "../utils/locale";
 import { getPrefGlobalName } from "../utils/prefs";
 import { MenuitemOptions } from "zotero-plugin-toolkit";
 import { Citation } from "./citation";
-import { IndexerBase } from "./indexer";
+import { IndexerBase } from "./indexers/indexer";
 import PIDBoxContainer from "../containers/pidBoxContainer";
 import OCI from "../oci";
 

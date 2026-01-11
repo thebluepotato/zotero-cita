@@ -1,9 +1,9 @@
-import Wikicite from "./wikicite";
+import Wikicite from "../wikicite";
 import { IndexedWork, IndexerBase, ParsableReference } from "./indexer";
-import ItemWrapper from "./itemWrapper";
-import * as prefs from "../cita/preferences";
-import { getPref } from "../utils/prefs";
-import PID from "./PID";
+import ItemWrapper from "../itemWrapper";
+import * as prefs from "../preferences";
+import { getPref } from "../../utils/prefs";
+import PID from "../PID";
 import Bottleneck from "bottleneck";
 
 interface SemanticPaper {

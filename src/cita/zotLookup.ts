@@ -4,8 +4,7 @@ import { SearchParameters } from "openalex-sdk/dist/src/types/work";
 import PID from "./PID";
 import Wikicite from "./wikicite";
 import _ from "lodash";
-import { ParsableReference } from "./indexer";
-import ItemWrapper from "./itemWrapper";
+import { ParsableReference } from "./indexers/indexer";
 import { WorkFilterParameters } from "openalex-sdk/dist/src/types/workFilterParameters";
 
 interface TranslatedReference {

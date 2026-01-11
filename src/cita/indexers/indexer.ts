@@ -1,13 +1,13 @@
-import SourceItemWrapper from "./sourceItemWrapper";
-import Progress from "./progress";
-import { Citation, CitationSource } from "./citation";
-import Wikicite, { debug } from "./wikicite";
+import SourceItemWrapper from "../sourceItemWrapper";
+import Progress from "../progress";
+import { Citation, CitationSource } from "../citation";
+import Wikicite, { debug } from "../wikicite";
 import Bottleneck from "bottleneck";
-import ItemWrapper from "./itemWrapper";
-import PID from "./PID";
-import Matcher from "./matcher";
+import ItemWrapper from "../itemWrapper";
+import PID from "../PID";
+import Matcher from "../matcher";
 import _ from "lodash";
-import Lookup, { ParsedReference } from "./zotLookup";
+import Lookup, { ParsedReference } from "../zotLookup";
 
 export interface IndexedWork<R> {
 	/**

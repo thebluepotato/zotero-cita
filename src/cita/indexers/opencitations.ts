@@ -1,7 +1,7 @@
 import { IndexedWork, IndexerBase, ParsableReference } from "./indexer";
-import Wikicite, { debug } from "./wikicite";
-import ItemWrapper from "./itemWrapper";
-import PID from "./PID";
+import Wikicite, { debug } from "../wikicite";
+import ItemWrapper from "../itemWrapper";
+import PID from "../PID";
 import Bottleneck from "bottleneck";
 
 interface OCWork {

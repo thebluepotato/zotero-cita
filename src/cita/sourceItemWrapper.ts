@@ -11,7 +11,7 @@ import { StorageType } from "./preferences";
 import Lookup from "./zotLookup";
 import * as _ from "lodash";
 import PID from "./PID";
-import { IndexerBase } from "./indexer";
+import { IndexerBase } from "./indexers/indexer";
 import { splitStringIntoChunks } from "../utils/stringUtils";
 
 // replacer function for JSON.stringify

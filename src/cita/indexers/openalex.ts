@@ -5,8 +5,8 @@ import {
 	SearchParameters,
 	Work,
 } from "openalex-sdk/dist/src/types/work";
-import ItemWrapper from "./itemWrapper";
-import PID from "./PID";
+import ItemWrapper from "../itemWrapper";
+import PID from "../PID";
 import Bottleneck from "bottleneck";
 
 export default class OpenAlex extends IndexerBase<string> {
