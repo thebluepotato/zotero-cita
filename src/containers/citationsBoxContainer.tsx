@@ -63,8 +63,7 @@ function CitationsBoxContainer(props: {
 	// only for WIkidata an option to create one if not found will be offered (basic functionality)
 	// it is next to these that a "get citations from crossref/wikidata/etc" option will be offered as well
 	// or a sync button (but only wikidata will be back and forth)
-	// well, actually the forth of DOI may be export in CROCI format
-	// get citations from crossref for this DOI / export citations to CROCI for this DOI
+	// get citations from crossref for this DOI
 	// get citations from Wikidata for this QID / sync citations to Wikidata for this QID
 	// OMID (OpenCitations Metadata ID) makes sense too, because OCI may relate two interanal OC corpus ids
 

@@ -537,7 +537,7 @@ class SourceItemWrapper extends ItemWrapper {
 	}
 
 	// Fixme: maybe the methods below may take an optional index number
-	// if provided, sync to wikidata, export to croci, etc, only for that citation
+	// if provided, sync to wikidata, etc, only for that citation
 	// if not, do it for all
 
 	getFrom<T>(indexer: IndexerBase<T>) {
@@ -869,10 +869,6 @@ class SourceItemWrapper extends ItemWrapper {
 			}
 			progress.close();
 		}
-	}
-
-	exportToCroci(citationIndex?: number) {
-		//OpenCitations.exportCitations();
 	}
 }
 

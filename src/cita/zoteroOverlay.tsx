@@ -926,16 +926,6 @@ class ZoteroOverlay {
 					commandListener: () => this._sourceItem!.exportToFile(),
 					isDisabled: () => !this._sourceItem!.citations.length,
 				},
-				// Export to CROCI menu item
-				{
-					tag: "menuitem",
-					id: "item-menu-croci-export",
-					label: Wikicite.getString(
-						"wikicite.item-menu.export-croci",
-					),
-					commandListener: () => this._sourceItem!.exportToCroci(),
-					isDisabled: () => !this._sourceItem!.citations.length,
-				},
 			],
 		);
 
@@ -1062,23 +1052,6 @@ class ZoteroOverlay {
 					),
 					commandListener: () =>
 						this._sourceItem!.exportToFile(this._citationIndex),
-				},
-				// Export to Croci
-				{
-					tag: "menuitem",
-					id: "citation-menu-croci-export",
-					label: Wikicite.getString(
-						"wikicite.citation-menu.export-croci",
-					),
-					commandListener: () =>
-						this._sourceItem!.exportToCroci(this._citationIndex),
-					isDisabled: () => {
-						const sourceItem = this._sourceItem;
-						const citation =
-							sourceItem?.citations[this._citationIndex!];
-						const targetItem = citation?.target;
-						return !sourceItem?.doi || !targetItem?.doi;
-					},
 				},
 			],
 		);
