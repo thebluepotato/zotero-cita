@@ -2,7 +2,6 @@ import Wikidata, { CitesWorkClaim } from "./wikidata";
 import Wikicite, { debug } from "./wikicite";
 import { Citation } from "./citation";
 import Matcher from "./matcher";
-import OCI from "../oci";
 import Progress from "./progress";
 import SourceItemWrapper from "./sourceItemWrapper";
 import * as prefs from "../cita/preferences";
@@ -140,15 +139,15 @@ export default class {
 
 		// local citation actions arrays
 		const localAddCitations: { [id: number]: QID[] } = {}; // these citations will be added locally
-		const localFlagCitations: { [id: number]: QID[] } = {}; // Wikidata OCI will be added to these
-		const localUnflagCitations: { [id: number]: QID[] } = {}; // Wikidata OCI will be removed from these
+		const localFlagCitations: { [id: number]: QID[] } = {}; // Wikidata citation status will be added to these
+		const localUnflagCitations: { [id: number]: QID[] } = {}; // Wikidata citation status will be removed from these
 		const localDeleteCitations: { [id: number]: QID[] } = {}; // these citations will be removed locally
 
 		// remote citation actions arrays
 		const remoteAddCitations: { [id: number]: QID[] } = {}; // these citations will be added remotely
 
 		//// special citation arrays
-		// orphaned citations have a Wikidata OCI but are no longer available
+		// orphaned citations have a Wikidata citation status but are no longer available
 		// in Wikidata
 		const orphanedCitations: { [id: number]: QID[] } = {};
 
@@ -165,12 +164,10 @@ export default class {
 			// special counters
 			orphanedCitations: 0,
 
-			// citations which already have a Wikidata OCI
+			// citations which already have a Wikidata citation status
 			syncedCitations: 0,
 			// citations for which their target item qids are unknown
 			noQidCitations: 0,
-			// citations with an invalid Wikidata OCI
-			invalidOci: 0,
 		};
 
 		const localItemsToUpdate: Set<number> = new Set();
@@ -203,24 +200,6 @@ export default class {
 				const localCitedQid = citation.target.qid;
 				const wikidataCitationStatus =
 					citation.getWikidataCitationStatus();
-				// First check if the citation has an invalid wikidata oci.
-				// These citations will be ignored (i.e., they won't be
-				// unflagged nor will they be marked as orphaned).
-				// No new citation will be created either for the target item
-				// referred to by the oci.
-				// User must fix the inconsistency first: revert the source or
-				// target item qid change, or remove the citation.
-				if (wikidataCitationStatus && !wikidataCitationStatus.matches) {
-					// local citation has a wikidata oci, but it is invalid
-					// i.e., it corresponds to another source or target qid
-					counters.invalidOci += 1;
-
-					// add the invalid oci's target qid to the array of local cited qids
-					// because we don't want to create a new local citation for this
-					// target item
-					localCitedQids.add(wikidataCitationStatus.citedQID);
-					continue;
-				}
 				if (localCitedQid) {
 					localCitedQids.add(localCitedQid);
 					if (remoteCitedQids.includes(localCitedQid)) {
@@ -312,7 +291,7 @@ export default class {
 			}
 			switch (orphanedActions[orphanedActionSelection.value]) {
 				case "keep":
-					// keep local citation, but remove outdated Wikidata OCI
+					// keep local citation, but remove outdated Wikidata citation status
 					for (const itemId of Object.keys(orphanedCitations)) {
 						const itemIdNumber = Number(itemId);
 						localUnflagCitations[itemIdNumber].push(
@@ -707,7 +686,6 @@ function composeConfirmation(
 		orphanedCitations: number;
 		syncedCitations: number;
 		noQidCitations: number;
-		invalidOci: number;
 	},
 ) {
 	// Message header
@@ -779,9 +757,7 @@ function composeConfirmation(
 
 	// local citations that will not be changed section
 	const unchangedCitationsCount =
-		counters.syncedCitations +
-		counters.noQidCitations +
-		counters.invalidOci;
+		counters.syncedCitations + counters.noQidCitations;
 
 	// this wasn't defined?
 	// if (counters.unchangedCitations) {
@@ -807,14 +783,6 @@ function composeConfirmation(
 				Wikicite.formatString(
 					"wikicite.wikidata.confirm.message.no-qid",
 					counters.noQidCitations,
-				);
-		}
-		if (counters.invalidOci) {
-			confirmMsg +=
-				"\n\t" +
-				Wikicite.formatString(
-					"wikicite.wikidata.confirm.message.invalid-oci",
-					counters.invalidOci,
 				);
 		}
 	}
