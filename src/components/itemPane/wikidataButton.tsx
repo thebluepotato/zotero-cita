@@ -17,10 +17,12 @@ function WikidataButton(props: WikidataButtonProps) {
 	let imgSrc = `chrome://${config.addonRef}/content/skin/default/wikidata-`;
 	if (wikidataCitationStatus) {
 		if (wikidataCitationStatus.matches) {
-			title = Wikicite.getString("wikicite.citation-menu.oci");
+			title = Wikicite.getString("wikicite.wikidata-status.match");
 			imgSrc += "tick";
 		} else {
-			title = Wikicite.getString("wikicite.oci.mismatch.title");
+			title = Wikicite.getString(
+				"wikicite.wikidata-status.mismatch.title",
+			);
 			imgSrc += "cross";
 		}
 	} else {

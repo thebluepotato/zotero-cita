@@ -297,11 +297,16 @@ export class Citation {
 				// do not match with local source or target id
 				Services.prompt.alert(
 					window as mozIDOMWindowProxy,
-					Wikicite.getString("wikicite.oci.mismatch.title"),
-					Wikicite.formatString("wikicite.oci.mismatch.message", [
-						wikidataCitationStatus.citingQID,
-						wikidataCitationStatus.citedQID,
-					]),
+					Wikicite.getString(
+						"wikicite.wikidata-status.mismatch.title",
+					),
+					Wikicite.formatString(
+						"wikicite.wikidata-status.mismatch.message",
+						[
+							wikidataCitationStatus.citingQID,
+							wikidataCitationStatus.citedQID,
+						],
+					),
 				);
 			}
 		} else if (syncable) {
